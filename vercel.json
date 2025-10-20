@@ -3,22 +3,12 @@
     {
       "src": "api/autofill.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "api/watcher.py",
-      "use": "@vercel/python"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/api/autofill.py"
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/watcher",
-      "schedule": "* * * * *"
     }
   ]
 }
