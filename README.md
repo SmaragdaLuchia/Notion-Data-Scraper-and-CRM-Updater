@@ -1,31 +1,26 @@
 # Data-Scraper-and-CRM-Updater
 
-## Release Notes
+## CLI kasutamine
 
-### Overview
-This release completes the implementation of the **Auto-Fill** use case, which enables collaboration managers to automatically populate company details in the CRM system by entering a valid Business Registry Code.  
-The feature reduces manual data entry and ensures accurate, up-to-date information retrieved directly from the Estonian Business Register.
+Installi sõltuvused ja käivita CLI:
 
-### Implemented Functionality
-- The system retrieves company information based on the entered Business Registry Code.  
-- When **“Auto-Fill”** is clicked, the corresponding company fields are automatically populated.  
+```bash
+pip install -r requirements.txt
+python main.py --help
+```
 
-### Main Success Scenario
-1. The collaboration manager enters a valid Business Registry Code.  
-2. The manager clicks **“Auto-Fill.”**  
-3. The system fetches company data and fills in all fields in the selected CRM entry.  
-4. If the registry code is correct, then the corresponding fields are filled.
+Kaks režiimi:
 
-### Preconditions
-- The collaboration manager has opened the CRM page and started a new company entry.
+- Registrikoodi järgi sünkroonimine CSV-st Notioni (lisab või uuendab kirjet):
 
-### Postconditions
-- The selected entry in the CRM has its fields populated with retrieved company data from business register.  
-- No other entries or data in the system are modified.
+```bash
+python main.py --regcode 12345678
+```
 
-### Testing Summary
-- Verified full workflow from input submission to field population.  
+- Täida olemasoleva Notioni lehe andmed lehe `id()` põhjal (loe "Registrikood" lehelt ja uuenda sama lehte):
 
-### Status
-**Use Case 1 — Auto-Fill** main scenario is implemented, tested, and deployed as part of the current release.
+```bash
+python main.py --page-id a1b2c3d4e5f6g7h8i9j0
+```
 
+Veendu, et `config.yaml` sisaldab `notion.token`, `notion.database_id` ja `ariregister.csv_url` seadeid.
