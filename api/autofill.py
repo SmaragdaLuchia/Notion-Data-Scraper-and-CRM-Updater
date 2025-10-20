@@ -26,7 +26,7 @@ def autofill():
         
         return jsonify({
             "success": True, 
-            "message": "Notion page updated successfully ",
+            "message": "Notion page updated successfully",
             "pageId": page_id,
             "debug": result
         })
